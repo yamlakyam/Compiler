@@ -14,11 +14,9 @@ public class LexicalAnalyzer {
 
     boolean isKeyWord(String buffer) {
         ArrayList<String> keywordList = new ArrayList<String>(
-                Arrays.asList("auto", "break", "case", "char", "const", "continue",
-                        "default", "do", "double", "else", "enum", "extern", "float", "for",
-                        "goto", "if", "int", "long", "register", "return", "short", "signed",
-                        "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned",
-                        "void", "volatile", "while"));
+                Arrays.asList("function", "double", "single", "char", "disp",
+                        "(", ")", ".", "'", ",", ";", "[", "]", "=",
+                        "+", "-", "*", "/"));
 
         for (int i = 0; i < keywordList.size(); i++) {
             if (buffer.equals(keywordList.get(i))) {
