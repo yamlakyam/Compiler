@@ -11,12 +11,12 @@ public class LexicalAnalyzer {
 
         LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
 
-        boolean isKw = lexicalAnalyzer.isKeyWord("auto");
-        System.out.println(isKw);
+//        boolean isKw = lexicalAnalyzer.isKeyWord("auto");
+//        System.out.println(isKw);
 //        lexicalAnalyzer.getWordList();
         System.out.println(lexicalAnalyzer.getKeyWordList());
 
-        ArrayList<String> keyWords= lexicalAnalyzer.getKeyWordList();
+        ArrayList<String> keyWords = lexicalAnalyzer.getKeyWordList();
 //        lexicalAnalyzer.getKeyWordList();
         lexicalAnalyzer.identifyKeyWords(keyWords);
 
@@ -66,41 +66,50 @@ public class LexicalAnalyzer {
         ArrayList<String> reservedWords = new ArrayList<>();
         ArrayList<String> specialCharacters = new ArrayList<>();
         ArrayList<String> operators = new ArrayList<>();
+
         for (int i = 0; i < keyWords.size(); i++) {
-            if(isReservedWord(keyWords.get(i))){
-                reservedWords.add(keyWords.get(i));
-            }else if(isSpecialCharacter(keyWords.get(i))){
-                specialCharacters.add(keyWords.get(i));
-            }else if(isOperator(keyWords.get(i))){
-                operators.add(keyWords.get(i));
+            if (isReservedWord(keyWords.get(i))) {
+                if(!reservedWords.contains(keyWords.get(i))){
+                    reservedWords.add(keyWords.get(i));
+                }
+            } else if (isSpecialCharacter(keyWords.get(i))) {
+
+                if(!specialCharacters.contains(keyWords.get(i))){
+                    specialCharacters.add(keyWords.get(i));
+                }
+            } else if (isOperator(keyWords.get(i))) {
+
+                if(!operators.contains(keyWords.get(i))){
+                    operators.add(keyWords.get(i));
+                }
             }
         }
 
-        System.out.println("Reserved words : "+reservedWords);
-        System.out.println("Special Characters : "+specialCharacters);
-        System.out.println("Operators : "+operators);
+        System.out.println("Reserved words : " + reservedWords);
+        System.out.println("Special Characters : " + specialCharacters);
+        System.out.println("Operators : " + operators);
     }
 
 
     public boolean isReservedWord(String keyword) {
-        if (keyword == "function" || keyword == "double" ||
-                keyword == "single" || keyword == "char" || keyword == "disp") {
+        if (keyword.equals("function") || keyword.equals("double") ||
+                keyword.equals("single") || keyword.equals("char") || keyword.equals("disp")) {
             return true;
         }
         return false;
     }
 
     public boolean isSpecialCharacter(String keyword) {
-        if (keyword == "(" || keyword == ")" ||
-                keyword == "." || keyword == "," || keyword == ";" ||
-                keyword == "[" || keyword == "]" || keyword == "=") {
+        if (keyword.equals("(") || keyword.equals(")") ||
+                keyword.equals(".") || keyword.equals(",") || keyword.equals(";") ||
+                keyword.equals("[") || keyword.equals("]") || keyword.equals("=")) {
             return true;
         }
         return false;
     }
 
     public boolean isOperator(String keyword) {
-        if (keyword == "+" || keyword == "-" || keyword == "*" || keyword == "/") {
+        if (keyword.equals("+") || keyword.equals("-") || keyword.equals("*") || keyword.equals("/")) {
             return true;
         }
         return false;
