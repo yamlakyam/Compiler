@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ public class LexicalAnalyzer {
 
     }
 
-    boolean isKeyWord(String buffer) {
+    public boolean isKeyWord(String buffer) {
         ArrayList<String> keywordList = new ArrayList<String>(
                 Arrays.asList("function", "double", "single", "char", "disp",
                         "(", ")", ".", "'", ",", ";", "[", "]", "=",
@@ -24,6 +25,10 @@ public class LexicalAnalyzer {
             }
         }
         return false;
+    }
+
+    public void readFile(){
+        File file = new File("");
     }
 
 
